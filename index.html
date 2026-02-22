@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Monica N | Modern Portfolio</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+  background: linear-gradient(-45deg,#ff00cc,#3333ff,#00f2ff,#ff6600);
+  background-size:400% 400%;
+  animation: gradientMove 10s ease infinite;
+  color:white;
+  text-align:center;
+}
+
+@keyframes gradientMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+/* Skills */
+.skill-bar{
+  background:#333;
+  border-radius:20px;
+  margin-bottom:15px;
+}
+
+.skill-fill{
+  height:15px;
+  border-radius:20px;
+  animation: grow 2s ease forwards;
+}
+
+.c{width:80%; background:linear-gradient(to right,#00f2ff,#ff00cc);}
+.python{width:85%; background:linear-gradient(to right,#ff6600,#ff00cc);}
+.html{width:90%; background:linear-gradient(to right,#00ffcc,#3333ff);}
+
+@keyframes grow{
+  from{width:0;}
+}
+
+header{
+  padding:60px 20px;
+  animation: fadeIn 2s ease;
+}
+
+header h1{
+  font-size:50px;
+  text-shadow:0 0 20px white;
+}
+
+header p{
+  margin-top:10px;
+  font-size:18px;
+}
+
+.profile{
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  border:5px solid white;
+  margin-top:25px;
+  object-fit:cover;
+  transition:0.5s;
+}
+
+.profile:hover{
+  transform:scale(1.1);
+}
+
+.section{
+  padding:50px 20px;
+}
+
+.card{
+  background:rgba(0,0,0,0.5);
+  margin:25px auto;
+  padding:30px;
+  width:80%;
+  border-radius:25px;
+  transition:0.5s;
+  backdrop-filter:blur(10px);
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 25px white;
+}
+
+.card h2{
+  margin-bottom:15px;
+  font-size:28px;
+}
+
+.certificates img{
+  width:300px;
+  border-radius:10px;
+  cursor:pointer;
+  transition: transform 0.3s;
+}
+
+.certificates:hover{
+  transform:scale(1.05);
+}
+
+footer{
+  padding:20px;
+  background:black;
+  margin-top:40px;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+  <h1>Monica N</h1>
+  <p>BCA Cloud Computing - 2nd Semester</p>
+  <p>Karnataka</p>
+  <img src="monica.jpg"class="profile">
+</header>
+
+<div class="section">
+
+  <div class="card">
+    <h2>About Me</h2>
+    <p>
+      Hi, I’m Monica N. I was born and raised in Bengaluru, and 
+      I’m currently pursuing a BCA in Cloud Computing at Kristu Jayanti Deemed to be University.
+    </p>
+	<p>I’m focused on building practical skills in web development and cloud technologies that power modern digital products.
+I enjoy turning ideas into clean, responsive websites using HTML, CSS, and JavaScript, and I’m constantly exploring how cloud platforms enable scalable and efficient applications.
+Outside academics, I channel my creativity through painting, which helps me think visually and approach problems with a fresh perspective.
+I’m actively looking for internship opportunities and real-world projects where I can apply my skills, learn from industry professionals, and grow as a technology professional.</p>
+  </div>
+
+  <div class="card certificates">
+    <h2>My Certificates</h2>
+    <a href="Digital engineering.jpeg" target="_blank">
+    <img src="Digital engineering.jpeg" class="certificate">
+</a>
+
+<a href="Front End Web Developer Certification.jpeg" target="_blank">
+    <img src="Front End Web Developer Certification.jpeg" class="certificate">
+</a>
+  </div>
+
+  <div class="card">
+<div class="card">
+  <h2>My Skills</h2>
+
+  <p>C Programming</p>
+  <div class="skill-bar">
+    <div class="skill-fill c"></div>
+  </div>
+
+  <p>Python</p>
+  <div class="skill-bar">
+    <div class="skill-fill python"></div>
+  </div>
+
+  <p>HTML</p>
+  <div class="skill-bar">
+    <div class="skill-fill html"></div>
+  </div>
+
+</div>
+    <h2>Contact Me</h2>
+    <p>Email: 25bcla39@kristujayanti.com</p>
+    <p>Phone: +91 7795994078</p>
+  </div>
+
+</div>
+<h2>Contact Me</h2>
+
+<form id="contactForm">
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Your Email" required>
+    <textarea id="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send</button>
+</form>
+<footer>
+  © 2026 Monica N | All Rights Reserved
+</footer>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value
+    };
+
+    const response = await fetch("http://localhost:5000/contact", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+    alert(result.message);
+});
+</script>
+
+</body>
+</html>
